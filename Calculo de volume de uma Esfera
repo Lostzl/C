@@ -1,0 +1,17 @@
+//Lostzl.
+
+#include <stdio.h>
+main(){
+
+float Vol, Raio, x;
+
+printf("CALCULO DE VOLUME DE ESFERA!!\n\n");
+printf("Entre com o Valor do raio (Em Metros):");
+scanf("%f", &Raio);
+printf("\n");
+
+x = (Raio*Raio*Raio);
+Vol = (4*3.14159265*x)/3;
+
+printf("O volume da esfera: %.4f m^3.\n\n", Vol);
+}
