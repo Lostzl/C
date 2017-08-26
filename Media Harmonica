@@ -1,0 +1,21 @@
+//Lostzl.
+
+#include <stdio.h>
+#include <conio.h> // Abre a funcao gets
+
+main(){
+float n1, n2, n3, ma, mh;
+char nome[61];
+
+printf("Insira o Nome do(a) Aluno(a):");
+gets(nome);
+
+printf("Insira as notas no formato N1/N2/N3:");
+scanf("%f/%f/%f", &n1, &n2, &n3);
+
+ma = ((1/n1)+(1/n2)+(1/n3))/3;
+mh = (1/ma);                // A media Harmonica é o inverso do inverso da Media Aritimética.
+printf("\n\n");
+printf("________________________________\n\n");
+printf("ALUNO: %s\n", nome);
+printf("Obteve Media Harmonica = %.2f\n\n", mh);
