@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+main(){
+
+float Hi, Mi, Ht, Mt, Hd, Md, x, hi, ht, y;
+// Tempo maximo de duração 24hr
+
+printf("Escreva a Hora de Inicio No formato XX:XX:");
+scanf("%f:%f", &Hi, &Mi);
+
+printf("Escreva a Hora de Termino No formato XX:XX:");
+scanf("%f:%f", &Ht, &Mt);
+
+hi = ((Hi*60) + Mi)/60;
+printf("hi = %.2f\n\n", hi);
+ht = ((Ht*60) + Mt)/60;
+printf("ht = %.2f\n\n", ht);
+
+if(hi >= 12){
+
+    x = (((hi - 24) - ht)* (-1)); // multiplicar por -1
+    printf("x = %.2f\n\n", x);
+}
+if((hi < 12) && (ht < hi)){
+
+        y = (24 -(hi - ht));
+printf("y = %.2f\n\n", y);
+}
+printf("Duracao do jogo e: %.2f", x);
+}
