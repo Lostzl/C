@@ -37,4 +37,5 @@ int main() {
     printf("%18d - NOTAS DE 10 REAIS\n", N10);
     printf("%18d - NOTAS DE 1 REAL", N1);
     printf("\n\n");
+    system("pause");
 }
