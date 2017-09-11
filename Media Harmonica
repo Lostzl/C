@@ -1,6 +1,7 @@
 //Lostzl.
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <conio.h> // Abre a funcao gets
 
 main(){
@@ -19,3 +20,6 @@ printf("\n\n");
 printf("________________________________\n\n");
 printf("ALUNO: %s\n", nome);
 printf("Obteve Media Harmonica = %.2f\n\n", mh);
+printf("\n\n");
+system("pause");
+}
