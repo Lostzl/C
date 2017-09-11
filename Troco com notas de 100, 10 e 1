@@ -3,37 +3,38 @@
 
 int main() {
     // O CAIXA SO DISPOE DE NOTAS DE 1, 10, 100
+
     //MOSTRE: VALOR DA COMPRA, VALOR TROCO, QNTD DE CADA TIPO DE NOTA NO TROCO
-    int N1, N10, N100, ValCOMPRA, ValTROCO, x, y, z, comp, RST, RST2;
 
-    printf("Entre com o valor da compra:");
-    scanf("%d", &ValCOMPRA);
+    int N1, N10, N100, ValTROCO, comp, RST, RST2;
 
-    printf("Valor da compra: %d \n\n", ValCOMPRA);
+    printf("Entre com o valor do Troco:");
+    scanf("%d", &ValTROCO);
+    printf("\n\n");
+    comp = ValTROCO/100;
 
-   comp = ValCOMPRA/100;
+       if(comp > 0){
+           N100 = ValTROCO/100;
+           RST = ValTROCO % 100;
 
-   if(comp > 0){
-       N100 = ValCOMPRA/100;
-       RST = ValCOMPRA % 100;
+           if(RST > 0){
+                if(RST >= 10){
+                    N10 = RST/10;
+                    RST2 = RST%10;
+                    N1 = RST2;
+           }else{
+                N10 = 0;
+                N1 = RST;
+           }
+        }
 
-       if(RST > 0){
-            if(RST >= 10){
-                N10 = RST/10;
-                RST2 = RST%10;
-                N1 = RST2;
+       }else{
+           N100 = 0;
+           N10 = ValTROCO/10;
+           N1 = ValTROCO%10;
        }
-    }
-
-   }else{
-       N100 = 0;
-       N10 = ValCOMPRA/10;
-       N1 = ValCOMPRA%10;
-
-   }
-
-printf("O TROCO SERA DE: %d - NOTAS DE 100 REAIS\n", N100);
-printf("%18d - NOTAS DE 10 REAIS\n", N10);
-printf("%18d - NOTAS DE 1 REAL", N1);
-printf("\n\n");
+    printf("O TROCO SERA DE: %d - NOTAS DE 100 REAIS\n", N100);
+    printf("%18d - NOTAS DE 10 REAIS\n", N10);
+    printf("%18d - NOTAS DE 1 REAL", N1);
+    printf("\n\n");
 }
