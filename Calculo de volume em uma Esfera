@@ -1,6 +1,8 @@
 //Lostzl.
 
 #include <stdio.h>
+#include <stdlib.h>
+
 main(){
 
 float Vol, Raio, x;
@@ -14,4 +16,6 @@ x = (Raio*Raio*Raio);
 Vol = (4*3.14159265*x)/3;
 
 printf("O volume da esfera: %.4f m^3.\n\n", Vol);
+printf("\n\n");
+system("pause");
 }
