@@ -1,6 +1,4 @@
-//Lostzl.
-
-#include <stdio.h>
+#include <stdio.h> //Author, Lucas V.
 #include <stdlib.h>
 
 main(){
