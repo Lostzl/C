@@ -1,0 +1,40 @@
+#include<stdio.h>  //Author, Lucas V.
+#include<stdlib.h> /* Escreva um programa que calcule e escreva o valor de S, dado pelo seguinte somatório:
+                      S = 1/1 – 2/4 + 3/9 – 4/16 + 5/25 – 6/36 +...*/
+
+main(){
+
+float soma = 0, cond = 1, termo = 0, num = 0, den = 0, sinal = 1;
+
+
+printf("VAR cond = %f\n\n", cond);
+
+while(cond > 0.01) {
+    num = num + 1;
+    den = num*num;
+
+    printf("O TERMO = %.0f/%.0f\n", num, den);
+
+    termo = sinal*(num/den);
+
+    printf("VALOR DO TERMO = %f\n", termo);
+
+    soma = soma + termo;
+
+    printf("VALOR DA SOMA = %f\n", soma);
+
+    sinal = sinal*(-1);
+
+    printf("VAR sinal = %f\n", sinal);
+
+    cond = num/den;
+
+    printf("VAR cond = %f\n", cond);
+    printf("-------------------------------\n\n");
+}
+
+printf("VAR soma = %f\n\n", soma);
+
+system("pause");
+
+}
