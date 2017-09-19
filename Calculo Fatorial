@@ -1,0 +1,31 @@
+/*Author. Lucas V.
+Escreva um algoritmo que receba um número N e
+imprima o valor de N!, ou seja, o valor do fatorial daquele número.*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+main(){
+
+int n, s, i, j;
+
+printf("Entre com um numero N:");
+scanf("%d", &n);
+
+int n1[n - 1];
+s = n;
+
+for (i = n; i > 0; i--){
+        n1[i - 1] = i;
+
+    }
+
+for (j = 2; j <= n; j++){
+        s = (s * n1[n - j]);
+
+    }
+printf("\n");
+printf("O valor de N! = %d\n\n", s);
+printf("\n");
+system("pause");
+}
