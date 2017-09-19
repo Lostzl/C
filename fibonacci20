@@ -1,0 +1,31 @@
+/*Author - Lucas V.
+6.	Faça um algoritmo que escreva os
+20 primeiros números da sequência de Fibonacci.
+A sequência de Fibonacci é 1, 1, 2, 3, 5, 8, 13, 21, 34….*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+main(){
+
+int i[19], j[19], prox[19], k;
+
+i[0] = 1;
+printf("- %d -\n\n", i[0]);
+j[0] = 1;
+printf("- %d -\n\n", j[0]);
+
+prox[0] = j[0] + i[0];
+
+for(k = 2; k <= 20; k++){
+    i[k - 1] = prox[k - 2] - 1;
+    j[k - 1] = prox[k - 2] - 1;
+
+    printf("- %d -", prox[k - 2]);
+    prox[k - 1] = i[k - 1] + j[k - 2];
+
+}
+
+}
+
+}
