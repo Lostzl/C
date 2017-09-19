@@ -1,0 +1,27 @@
+
+/*Author - Lucas V.
+Seja a seguinte série: "1, 4, 9, 16, 25, 36, ...",
+escreva um algoritmo  que gere esta série até o
+enésimo termo. Este enésimo termo é digitado pelo usuário*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+main(){
+
+int n, i, x = 1;
+
+printf("Entre com a quantidade de termos a ser exibido:");
+scanf("%d", &n);
+
+int s[n - 1];
+
+for(i = 0; i < n; i++){
+    s[i] = pow(x, 2);
+    x = x + 1;
+    printf("%d - ", s[i]);
+}
+printf("\n\n");
+system("pause");
+}
