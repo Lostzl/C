@@ -1,0 +1,35 @@
+/*Author - Lucas V.
+
+Faça um algoritmo que calcule a média aritmética
+de N números, onde a quantidade N será entrada pelo
+usuário.O algoritmo deve encerrar quando o número –999 for digitado.*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+main(){
+
+int  x, i = 0, j = 0, cont = 0;
+float n1, med = 0, meds[1], s;
+
+printf("DIGITE -999 PARA CALCULAR A MEDIA DOS N's....\n\n");
+
+do{
+    printf("Entre com N%d:", i);
+    scanf("%f", &n1);
+
+    i++;
+    if(n1 != -999){
+        med = med + n1;
+        cont = cont + 1;
+    }
+
+}while(n1 != -999);
+
+s = med/cont;
+
+printf("\nA media dos termos e de: %.1f", s);
+
+printf("\n\n");
+system("pause");
+}
