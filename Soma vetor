@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+/* Author - Lucas V.
+Faça um programa que preenche dois vetores
+de 10 posições, A e B, com números aleatórios,
+e calcula a soma destes vetores armazenando o resultado no vetor C.
+A+B=C */
+
+
+int main(){
+
+srand(time(NULL));
+int a[9];
+int b[9];
+int c[9];
+int i;
+
+
+for(i = 0; i <= 9; i++){
+    a[i] = rand()%100;
+    b[i] = rand()%100;
+}
+
+for(i = 0; i <= 9; i++){
+    c[i] = a[i] + b[i];
+}
+
+for(i = 0; i<= 9; i++){
+    printf("A = %d\t", a[i]);
+    printf("\tB = %d\t", b[i]);
+    printf("\tC = %d\n", c[i]);
+
+}
+
+printf("\n");
+system("pause");
+return 0;
+}
