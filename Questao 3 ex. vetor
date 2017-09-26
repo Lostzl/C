@@ -12,7 +12,7 @@ int main(){
 // NUM tem que receber a quantidade de valores - 1.
 int NUM = 5;
 srand(time (NULL));
-int A[NUM];
+int A[NUM - 1];
 int i, j, k, l, valor;
 
 for(i = 0; i <= 4; i++){
@@ -20,10 +20,10 @@ A[i] = 0;
 }
 
 
-for(i = 0; i <= NUM; i++){
+for(i = 0; i < NUM; i++){
 valor = rand()%10;
 A[i] = valor;
-	for(j = 0; j <= NUM; j++){
+	for(j = 0; j < NUM; j++){
 		if((A[j] == A[i]) && (i != j)){  //i != 1 para que nao se utilize o i.
                 A[i] = (rand()%10) + 1;
                 j = 0;
@@ -33,7 +33,7 @@ A[i] = valor;
 
 }
 
-for(i = 0; i <= NUM; i++){
+for(i = 0; i < NUM; i++){
 printf("%d\n", A[i]);
 }
 system("pause");
