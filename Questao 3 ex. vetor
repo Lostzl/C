@@ -1,21 +1,20 @@
 #include<stdio.h>
-#include<stdlib.h>		
+#include<stdlib.h>
 #include<time.h>
 
 
 /*Faça um algoritimo que adicione 5 valores aleatorios a um vetor
 sem repeti-los, em seguida ordene-os em ordem crescente e mostre no console.*/
 
-	
+
 int main(){
 
 srand(time (NULL));
-int = A[4], Compara[4];
-int = i, j, k, l, valor;
+int A[4];
+int i, j, k, l, valor;
 
 for(i = 0; i <= 4; i++){
 A[i] = 0;
-Compara[i] = 0;
 }
 
 
@@ -24,18 +23,16 @@ valor = rand()%100;
 A[i] = valor;
 	for(j = 0; j <= 4; j++){
 		if((A[j] == A[i]) && (i != j)){  //i != 1 para que nao se utilize o i.
-	   	     posic[j] = valor
-		}	
+                printf("\nNumeros Iguais\n\n");
+		}
 	}
 
 }
 
-
-
-
-
-
-
+for(i = 0; i <= 4; i++){
+printf("%d\n", A[i]);
+}
 system("pause");
 return 0;
 }
+
