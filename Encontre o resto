@@ -1,0 +1,34 @@
+/*Author - Lucas V.
+Encontre o resto da divisao de dois numeros
+sem utilizar / ou % */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+main(){
+
+int divisor, dividendo, resto, quociente;
+float aux;
+
+printf("Entre com o Dividendo:");
+scanf("%d", &dividendo);
+printf("Entre com o Divisor:");
+printf("%d", &divisor);
+
+aux = pow(divisor, -1);
+quociente = dividendo*aux;
+
+if((quociente*divisor) == dividendo){
+	resto = 0;
+}
+if((quociente*divisor) < dividendo){
+	resto = 1;
+}
+if((quociente*divisor) == 0){
+	resto = dividendo;
+}
+
+printf("\n\n o resto e = %d", resto);
+
+}
