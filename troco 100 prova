@@ -32,7 +32,7 @@ N1 = troco;
 
 notas = N1 + N10 + N100;
 
-printf(\nO minimo de notas sera = %d\n", notas);
+printf("\nO minimo de notas sera = %d\n", notas);
 printf("%d Notas de 100 R$\n", N100);
 printf("%d Notas de 10 R$\n", N10);
 printf("%d Notas de 1 R$\n", N1);
