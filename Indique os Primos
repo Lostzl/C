@@ -1,0 +1,37 @@
+/* Author - Lucas V.
+Faça um algoritimo que leia varios numeros ate
+obter o finalizador zero e indique quantos numeros
+primos foram lidos*/
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#define TRUE 1
+#define FALSE 0
+
+int main(){
+
+int i, x, dividiu = 0, primo = 0, num, EhPrimo, d;
+do{
+    scanf("%d", &num);
+    if(num < 1 || (num != 2) && num % 2 == 0){
+            EhPrimo = FALSE;
+    }else{
+        EhPrimo = TRUE;
+    }
+    d = 3;
+    while (EhPrimo  && d <= num / 2) {
+	if (num % d == 0){
+	    EhPrimo = 0;
+	d = d + 2;
+        }
+    }
+
+    if (EhPrimo){
+	primo = primo + 1;
+    }
+}while(num != 0);
+
+printf("%d Numeros primos foram digitados!", primo);
+return 0;
+}
