@@ -1,0 +1,40 @@
+#include<stdio.h>
+
+
+main(){
+
+int troco, valcomp, valpago, N10, N100, N1, notas;
+
+printf("Entre com o valor da compra:");
+scanf("%d", &valcomp);
+printf("Entre com o valor pago");
+scanf("%d", &valpago);
+
+troco = valpago - valcompra;
+
+if(troco > 100){
+N100 = troco/100;
+N10 = (troco%100)/10;
+N1 = (troco%100) - N10*10;
+}
+
+if(troco < 100){
+N100 = 0;
+N10 = (troco/10);
+N1 = (troco%10);
+}
+
+if(troco < 10){
+N100 = 0;
+N10 = 0;
+N1 = troco;
+}
+
+notas = N1 + N10 + N100;
+
+printf(\nO minimo de notas sera = %d\n", notas);
+printf("%d Notas de 100 R$\n", N100);
+printf("%d Notas de 10 R$\n", N10);
+printf("%d Notas de 1 R$\n", N1);
+
+}
