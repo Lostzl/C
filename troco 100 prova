@@ -12,7 +12,7 @@ scanf("%d", &valpago);
 
 troco = valpago - valcompra;
 
-if(troco > 100){
+if(troco >= 100){
 N100 = troco/100;
 N10 = (troco%100)/10;
 N1 = (troco%100) - N10*10;
