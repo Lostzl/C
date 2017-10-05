@@ -1,0 +1,35 @@
+/* Author - Lucas V.
+Faça um algoritmo que calcule a média
+aritmética de N notas, onde a quantidade
+N será entrada pelo usuário. Não aceite
+notas fora do intervalo 0-10.*/
+
+#include <stdio.h>
+#include<stdlib.h>
+
+
+int main(){
+
+int i, qntTer;
+float num, soma=0, media;
+
+printf("A media sera calculada entre quantos termos?:");
+scanf("%d", &qntTer);
+
+for(i = 0; i < qntTer; i++){
+    printf("\nEntre com a %d - Nota:", i+1);
+    scanf("%f", &num);
+        if((num>=0) && (num<=10)){
+            soma = soma + num;
+        }else{
+            printf("\nNOTA INVALIDA! - TENTE NOVAMENTE:\n");
+            i = i - 1;
+        }
+}
+media = soma/qntTer;
+printf("\nA MEDIA DOS TERMOS EH: %.2f", media);
+
+printf("\n\n");
+system("pause");
+return 0;
+}
