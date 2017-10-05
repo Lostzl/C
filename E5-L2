@@ -1,0 +1,22 @@
+/* Author - Lucas V.
+Imprima uma tabela de conversão de
+polegadas para centímetros, de 1 a 20.
+Considere que Centímetro = Polegada * 2.54*/
+
+#include <stdio.h>
+
+
+int main(){
+
+float polegada;
+int i;
+
+printf("CENTIMETRO - POLEGADAS\n");
+
+for(i = 1; i<=20; i++){
+    polegada = (i*2.54);
+    printf("%5d - %10.2f\n", i, polegada);
+}
+
+return 0;
+}
