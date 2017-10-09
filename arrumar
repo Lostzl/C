@@ -1,0 +1,31 @@
+/*Author - Lucas V.
+Faça um algoritmo que seja capaz de
+obter o resultado de uma exponenciação
+para qualquer base e expoente inteiros
+positivos fornecidos, sem utilizar a operação de exponenciação.*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(){
+
+int i, base, expoente, resultado = 0;
+
+
+printf("Entre com a base(inteira e positiva):");
+scanf("%d", base);
+printf("Entre com um expoente(inteiro e positivo)");
+scanf("%d", expoente);
+
+vetor[expoente - 2];
+for(i = 0; i<expoente - 1; i++){
+    vetor[i] = base;
+}
+
+for(i = 0; i <= expoente - 1; i++){
+    base = base * vetor[i];
+}
+
+
+return 0;
+}
