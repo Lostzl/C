@@ -9,23 +9,26 @@ positivos fornecidos, sem utilizar a operação de exponenciação.*/
 
 int main(){
 
-int i, base, expoente, resultado = 0;
-
+int i, base, expoente;
+int T;
 
 printf("Entre com a base(inteira e positiva):");
-scanf("%d", base);
+scanf("%d", &base);
 printf("Entre com um expoente(inteiro e positivo)");
-scanf("%d", expoente);
+scanf("%d", &expoente);
+T = expoente - 1;
 
-vetor[expoente - 2];
-for(i = 0; i<expoente - 1; i++){
+int vetor[T];
+
+for(i = 0; i<T; i++){
     vetor[i] = base;
 }
 
-for(i = 0; i <= expoente - 1; i++){
+for(i = 0; i <T; i++){
     base = base * vetor[i];
 }
 
+printf("\n\nO resultado de exponeciacao eh = %d\n\n", base);
 
 return 0;
 }
