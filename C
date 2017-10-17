@@ -1,0 +1,36 @@
+#include<stdio.h>
+
+int main(){
+
+int qnt, cont=0;
+float valor, s=0, aux=0;
+
+
+	scanf("%f", &valor);
+	scanf("%d", &qnt);
+	s = s + (valor*qnt);
+	scanf("%f", &valor);
+	scanf("%d", &qnt);
+	s = s + (valor*qnt);
+	scanf("%f", &valor);
+	scanf("%d", &qnt);
+	s = s + (valor*qnt);
+	scanf("%f", &valor);
+	scanf("%d", &qnt);
+    if(qnt>0){
+    	aux = (valor*qnt)*1.10;
+    	s = s + aux;
+    	cont += 1;
+    }else{
+    	s = s + (valor*0);
+    }
+
+if(cont>0){
+	printf("%.2f", s);
+	printf("Valor do refrigerante: %.2f\n", aux);
+}else{
+	printf("%.2f\n", s);
+}
+
+return 0;	
+}
