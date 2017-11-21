@@ -1,0 +1,63 @@
+/*
+Elabore um programa para armazenar os dados de várias equações do 2º
+grau. Use uma struct para representar os coeficientes da equação. Após o
+armazenamento, exiba as equações, formatadas, e as suas raizes ou ainda
+informe que a equação não possui raizes reais.
+
+1- f(y) = ax^2 + bx + c, sendo a, b, e c (coeficientes) números reais com a!= 0;
+
+2- A equação não possui raizes se Δ < 0. Se Δ = 0, a equação possui uma única
+raiz. Se Δ > 0, a equação possui duas raizes.
+
+*/
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+int main(){
+
+struct montaEquacao{
+    float a;
+    float b;
+    float c;
+};
+struct raizesEquacao{
+    float raiz1;
+    float raiz2;
+    float delta;
+    char opDelta[40];
+};
+    struct montaEquacao equacao;
+    struct raizesEquacao equacaoResulta;
+
+
+printf("\n---------- CADASTRO DE DADOS ----------\n\n");
+printf("f(y) = ax^2 + bx + c, sendo a, b, e c (coeficientes) numeros reais com a!= 0;\n\n\n");
+printf("Entre com os coeficientes no formato (A-B-C):");
+scanf("%f-%f-%f", &equacao.a, &equacao.b, &equacao.c);
+
+printf("\n\n");
+printf("f(y) = %.1fx^2 + %.1fx + %.1f\n", equacao.a, equacao.b, equacao.c);
+
+equacaoResulta.delta = ((equacao.b*equacao.b) - (4*(equacao.a*equacao.c)));
+printf("\n\n");
+printf("DELTA = %.1f\n\n", equacaoResulta.delta);
+
+if(equacaoResulta.delta<0){
+    equacaoResulta.opDelta[40] = "EQUACAO NAO POSSUI RAIZES!";
+}
+if(equacaoResulta.delta = 0){
+    equacaoResulta.opDelta[40] = "EQUACAO POSSUIU UMA RAIZ!";
+    equacaoResulta.raiz1 = (((-1)*equacao.b) + sqrt(equacaoResulta.delta))/2*equacao.a;
+    printf("\n\nRaiz 1 = %.1f", equacaoResulta.raiz1);
+}
+if(equacaoResulta.delta > 0){
+    equacaoResulta.opDelta[40] = "EQUACAO POSSUIU DUAS RAIZES!";
+    equacaoResulta.raiz1 = (((-1)*equacao.b) + sqrt(equacaoResulta.delta))/2*equacao.a;
+    equacaoResulta.raiz2 = (((-1)*equacao.b) - sqrt(equacaoResulta.delta))/2*equacao.a;
+    printf("\n\nRaiz 1 = %.1f", equacaoResulta.raiz1);
+    printf("\n\nRaiz 2 = %.1f", equacaoResulta.raiz2);
+}
+
+return 0;
+}
