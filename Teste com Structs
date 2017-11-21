@@ -1,0 +1,54 @@
+/*
+Crie um programa que permite armazenar o nome e data de
+nascimento de até 10 pessoas. O nome deve ser uma struct com o nome e
+sobrenome da pessoa. A data deve ser uma struct com dia, mês e ano. O
+programa deve ler os dados e escrever uma tabela com os dados lidos
+*/
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(){
+int i = 0;
+
+struct nomes{
+   char nome[20];
+   char sobreNome[30];
+};
+struct data{
+   int dia;
+   int mes;
+   int ano;
+};
+
+struct nomes pessoas[10];
+struct data pessoasData[10];
+
+printf("\n---------- Cadastro de Pessoas -----------\n\n");
+
+for(i = 0; i<10; i++){
+    printf("\nEntre com o nome:");
+    fgets(pessoas[i].nome, 19, stdin);
+    fflush(stdin);
+    printf("\nEntre com o sobrenome:");
+    fgets(pessoas[i].sobreNome, 27, stdin);
+    fflush(stdin);
+    printf("\nEntre com o dia de nascimento:");
+    scanf("%d", &pessoasData[i].dia);
+    printf("\nEntre com o mes de nascimento:");
+    scanf("%d", &pessoasData[i].mes);
+    printf("\nEntre com o ano de nascimento:");
+    scanf("%d", &pessoasData[i].ano);
+    fflush(stdin);
+    printf("\n-----------------------------------------\n\n");
+}
+
+ printf("\n\n --------- Lendo os dados da struct ---------\n\n");
+
+for(i=0; i<10; i++){
+printf("\nPESSOA %d:\n\n", i+1);
+  printf("Nome ...........: %s", pessoas[i].nome);
+  printf("Sobrenome .....: %s", pessoas[i].sobreNome);
+  printf("Data de Nascimento ...: %d/%d/%d\n" , pessoasData[i].dia, pessoasData[i].mes, pessoasData[i].ano);
+}
+return 0;
+}
