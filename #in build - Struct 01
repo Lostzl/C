@@ -1,0 +1,50 @@
+/*Author - Lucas V.
+Escrever um programa que cadastre o nome, a matrícula
+e duas notas de vários alunos. Em seguida imprima a matrícula,
+o nome e a média de cada um deles.
+*/
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+int main(){
+
+int i=0;
+int QNT=2; //QUANTIDADE DE ALUNOS.
+
+printf("ENTRE COM A QUANTIDADE DE ALUNOS:");
+scanf("%d", &QNT);
+fflush(stdin);
+struct dados{
+    char nomeAluno[50];
+    int matricula;
+    float N1;
+    float N2;
+    float MD;
+};
+
+struct dados alunos[QNT];
+
+printf("\n\n ---- CADASTRO DE DADOS ----\n\n");
+for(i=0; i<QNT; i++){
+    printf("NOME.........:");
+    fgets(alunos[i].nomeAluno, 47, stdin);
+    fflush(stdin);
+    printf("MATRICULA....:");
+    scanf("%d", &alunos[i].matricula);
+    printf("NOTA 1....:");
+    scanf("%f", &alunos[i].N1);
+    printf("NOTA 1....:");
+    scanf("%f", &alunos[i].N1);
+    fflush(stdin);
+    alunos[i].MD = ((alunos[i].N1+alunos[i].N1)/2);
+    printf("\n");
+}
+
+printf("\n");
+printf("\n\n ---- RESULTADOS ----\n");
+for(i=0; i<QNT; i++){
+    printf("\nNOME: %sMATRICULA: %d\nMEDIA: %.2f\n", alunos[i].nomeAluno, alunos[i].matricula, alunos[i].MD);
+}
+return 0;
+}
