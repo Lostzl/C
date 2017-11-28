@@ -8,7 +8,7 @@ conversão devera ter uma função que receba o valor e retorne o valor converti
 float real_para_dollar(float val){
     float convert;
     if((val >= 0)){
-        convert = val*dollar;
+        convert = val*0.31;
     }
     return convert;
 }
@@ -16,7 +16,7 @@ float real_para_dollar(float val){
 float dollar_para_real(float val){
     float convert;
     if((val >= 0)){
-        convert = val/dollar;
+        convert = val*dollar;
     }
     return convert;
 }
