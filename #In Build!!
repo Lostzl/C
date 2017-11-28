@@ -1,0 +1,75 @@
+/*Faça uma função que recebe a idade de uma pessoa em anos, meses e dias e retorna essa
+idade expressa em dias.
+*/
+#include<stdio.h>
+#include<stdlib.h>
+#define anoAtual 2017
+#define mesAtual 11;
+#define diaAtual 28
+
+int bisexto(int ano){ //RETORNA SE UM ANO É BISEXTO OU NÃO!
+    int Bi = 0;
+    if(ano%4 == 0){
+        if(ano%100 != 0){
+            Bi = 1;
+        }else if(ano%100 == 0){
+                    if(ano%400 == 0){
+                        Bi = 1;
+                }else{
+                    Bi =0;
+                }
+            }
+        }else{
+            Bi = 0;
+        }
+return Bi;
+}
+
+
+int converteIdade(int anos, int meses, int dias){
+    int DiasAteAgora, qntBi=0;
+    int anoNasc, mesNasc, diaNasc;
+
+    anoNasc = anoAtual - anos; // ANO REAL NASCIMENTO
+    mesNasc = mesAtual - meses; // MES REAL NASCIMENTO
+    diaNasc = diaAtual - dias; // DIA REAL NASCIMENTO
+
+    while(anoNasc <= anoAtual){ //QUANTIDADE DE ANOS BISEXTOS!
+        if(anoNasc%4 == 0){
+            if(anoNasc%100 != 0){
+                qntBi += 1;
+            }else if(anoNasc%100 == 0){
+                if(anoNasc%400 == 0){
+                        qntBi += 1;
+
+                }
+            }
+        }
+        anoNasc += 1;
+    }
+
+    // PSEUDO CALCULO PARA DIAS TOTAIS, FALTA CONSIDERAR OS MESES REAIS( 31 OU 30 DIAS )
+    //ARRUMAR AQUI
+    if ((meses < 12) && (meses > 1) && (bisexto(anoAtual))){
+        DiasAteAgora = (((meses - 1)*30) + (1*29));
+    }else if((meses < 12) && (meses > 1)){
+        DiasAteAgora = (((meses - 1)*30) + (1*28));
+    }
+    DiasAteAgora = (((anos - qntBi)*365) + (qntBi*366) + dias);
+
+    printf("QUANTIDADE DE ANOS BISEXTOS: %d\n\n", qntBi);
+    return DiasAteAgora;
+}
+
+main(){
+    int ano, mes, dia;
+    printf("ENTRE COM OS ANOS:"); //QUANTIDADE DE ANOS QUE VIVEU
+    scanf("%d", &ano);
+    printf("ENTRE COM OS MESES:"); //QUANTIDADE DE MESES QUE VIVEU
+    scanf("%d", &mes);
+    printf("ENTRE COM OS DIAS:"); // QUANTIDADE DE DIAS QUE VIVEU
+    scanf("%d", &dia);
+
+    printf("\n%d\n", converteIdade(ano, mes, dia));
+
+}
