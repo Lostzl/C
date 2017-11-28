@@ -1,0 +1,52 @@
+/*Faça um programa que tenha um menu de conversão de R$ para US$ e US$ para R$, cada
+conversão devera ter uma função que receba o valor e retorne o valor convertido.
+*/
+#include<stdio.h>
+#include<stdlib.h>
+#define dollar 3.22
+
+float real_para_dollar(float val){
+    float convert;
+    if((val >= 0)){
+        convert = val*dollar;
+    }
+    return convert;
+}
+
+float dollar_para_real(float val){
+    float convert;
+    if((val >= 0)){
+        convert = val/dollar;
+    }
+    return convert;
+}
+
+
+main(){
+printf("----- MENU DE CONVERSAO MONETARIA ------\n\n");
+int operacao;
+float val;
+int sair = 1;
+while(sair){
+    printf("OPCAO 1 - CONVERTER REAL PARA DOLLAR!\nOPCAO 2 - CONVERTER DOLLAR PARA REAL!\nOPCAO 3 - SAIR!");
+    printf("\n-----------------------------\nENTRE COM A OPERACAO DESEJADA:");
+    scanf("%d", &operacao);
+    if(operacao == 1 || operacao == 2 || operacao == 3){
+        if(operacao == 1){
+            printf("\nENTRE COM O VALOR EM R$:");
+            scanf("%f", &val);
+            printf("\n - R$ %.2f - U$$ %.2f\n\n", val, real_para_dollar(val));
+        }else if(operacao == 2){
+            printf("\nENTRE COM O VALOR EM U$$:");
+            scanf("%f", &val);
+            printf("\n - U$$ %.2f - R$ %.2f\n\n", val, dollar_para_real(val));
+        }else if(operacao == 3){
+            sair = 0;
+        }
+    }else{
+        printf("\nOPERACAO INVALIDA TENTE NOVAMENTE!\n\n");
+
+    }
+}
+system("pause");
+}
