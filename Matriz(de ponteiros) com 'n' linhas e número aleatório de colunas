@@ -1,0 +1,59 @@
+ ///Author: Lucas V.///
+
+ /*Faça uma Matriz de quantas linhas você quiser
+  em que cada linha tenha quantidade diferentes
+  de elementos.
+  */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main()
+{
+
+    srand(time(NULL));
+
+    int i, j, num_linhas = 6, num_colunas;
+
+    int vet_posicao[num_linhas]; //IDENTIFICA QUANTOS ELEMENTOS TEM EM CADA LINHA;
+
+    //AQUI É DECLARADO UM ARRAY DE PONTEIRO EM QUE CADA ELEMENTO SEU RECEBERÁ UM PONTEIRO;
+    int **matriz = (int **) calloc(num_linhas, sizeof(int *));
+
+    printf("\nMATRIZ DE %d LINHAS E COLUNAS DE TAMANHO ALEATORIO!\n\n", num_linhas);
+
+    for(i = 0; i < num_linhas; i++) //ATRIBUINDO ELEMENTOS(PONTEIROS) EM CADA POSIÇÃO DO ARRAY DE PONTEIROS;
+    {
+        num_colunas =(rand()%num_linhas) + 1; //NUMERO ALEATÓRIO DE ELEMENTOS(PONTEIROS) PARA CADA POSIÇÃO DO ARRAY;
+        matriz[i] = (int *) calloc(num_colunas, sizeof(int));//PARA CADA ELEMENTO DO ARRAY É ADICIONADO UMA QUANTIDADE DIFERENTE DE PONTEIROS;
+        vet_posicao[i] = num_colunas;//INDETIFICANDO QUANTOS PONTEIROS TEM EM CADA LINHA;
+
+        for(j = 0; j < num_colunas; j++)
+        {
+            matriz[i][j] = rand()%10;//ADICIONANDO VALORES ALEATÓRIOS(INT) EM CADA PONTEIRO(*PONTEIRO);
+            printf("%i ", matriz[i][j]);//SEGUIDAMENTE, MOSTRANDO CADA VALOR;
+
+        }
+        printf("\n");
+
+    }
+    printf("\n\nPRINTANDO NOVAMENTE A MATRIZ!\n\n");
+
+    printf("\n");
+
+
+    //OUTRO LAÇO FOR, APENAS PARA MOSTRAR NOVAMENTE, DANDO UTILIDADE PARA O ARRAY(vet_posicao);
+    //PARA O CASO DE NECESSIDADE DE TRABALHAR COM OS VALORES.
+    for(i = 0; i < num_linhas; i++)
+    {
+        for(j = 0; j <  vet_posicao[i]; j++)
+        {
+            printf("%i ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n\n");
+    system("pause");
+    return 0;
+}
