@@ -1,0 +1,81 @@
+/*
+ * Author: Lucas V.
+ * Encontrando o Próximo Numero Perfeito.
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int numDivisoresInteiros(float num);
+    void preencheVetor(int vetor[], int tamanhoVetor, float num);
+    int numPerfeito(int vetor[], int tamanhoVetor, float num);
+    int teste = 0;
+    float num, numPrimeiro;
+
+    printf("\nEntre com um numero Inteiro:");
+    scanf("%f", &num);
+    numPrimeiro = num;
+
+
+    while (!teste) {
+        num++;
+
+        int tamanhoVetor = numDivisoresInteiros(num);
+
+        int vetorDivisores[tamanhoVetor];
+
+        preencheVetor(vetorDivisores, tamanhoVetor,num);
+
+        teste = numPerfeito(vetorDivisores, tamanhoVetor, num);
+    }
+
+    printf("\nO numero %d eh o proximo numero Perfeito depois de %d!!\n", (int)num, (int)numPrimeiro);
+
+    printf("\n");
+
+    system("pause");
+    return 0;
+}
+
+int numDivisoresInteiros(float num){
+    float divisao;
+    int numDivisores = 0;
+    for(int i = 1; i < num; i++){
+        divisao = num/i;
+        if(divisao == (int)divisao){
+            numDivisores++;
+        }else{
+
+        }
+        divisao = 0;
+    }
+    return numDivisores;
+}
+void preencheVetor(int vetor[], int tamanhoVetor, float num){
+    float divisao;
+    int j = 0;
+    for(int i = 1; i < num; i++){
+        divisao = num/i;
+        if(divisao == (int)divisao){
+            vetor[j] = i;
+            j++;
+        }else{
+
+        }
+        divisao = 0;
+    }
+}
+int numPerfeito(int vetor[], int tamanhoVetor, float num){
+    int soma = 0;
+    for(int i = 0; i < tamanhoVetor; i++){
+        soma += vetor[i];
+    }
+    if(soma == (int)num){
+        // printf("\nO numero %d eh um Numero Perfeito!!\n", (int)num); ///Para realização de testes!
+        return 1;
+    }else{
+        // printf("\nO numero %d NAO eh um Numero Perfeito!!\n", (int)num);///Para realização de testes!
+        return 0;
+    }
+}
