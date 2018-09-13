@@ -11,7 +11,7 @@ int info;
 struct Elemento *prox;
 };
 
-typedef struct elemento Elemento;
+typedef struct Elemento Elemento;
 
 Elemento* lista_insere_ordenado (Elemento* lista, int val);
 
@@ -31,7 +31,7 @@ Elemento* lista_insere_ordenado (Elemento* lista, int val) {
     Elemento* a = NULL;
     Elemento* p = lista;
 
-    while (p != NULL && p->info < val)  //deferecing pointer to incomplete type;
+    while (p != NULL && p->info < val)
     a = p;
     p = p->prox;
     }
