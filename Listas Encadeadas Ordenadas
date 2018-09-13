@@ -1,0 +1,51 @@
+/*
+ *Author Lucas V.
+ *
+ */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Elemento{
+int info;
+struct Elemento *prox;
+};
+
+typedef struct elemento Elemento;
+
+Elemento* lista_insere_ordenado (Elemento* lista, int val);
+
+int main(){
+
+    Elemento* lista;
+    lista = lista_insere_ordenado(lista, 10);
+
+system("pause");
+return 0;
+}
+
+
+
+Elemento* lista_insere_ordenado (Elemento* lista, int val) {
+    Elemento* novo;
+    Elemento* a = NULL;
+    Elemento* p = lista;
+
+    while (p != NULL && p->info < val)  //deferecing pointer to incomplete type;
+    a = p;
+    p = p->prox;
+    }
+
+    novo = (Elemento*) malloc(sizeof(Elemento));
+
+    novo->info = val;
+
+    if (a == NULL) {
+    novo->prox = lista;
+    lista = novo;
+    } else {
+    novo->prox = a->prox; a->prox = novo;
+    }
+
+return lista;
+}
