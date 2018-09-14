@@ -20,17 +20,18 @@ Elemento* lista_cria()
     return NULL;
 };
 
+//REALIZA A INSERCAO DE ELEMENTOS NO INICIO DA LISTA.
 int lista_insere(Elemento** lista, int val)
 {
     if(lista == NULL)
     {
-        printf("LISTA_INSERE: A lista passada como parametro é nula!\n\n");
         return 0;
     }
+
     Elemento* novo = (Elemento*) malloc(sizeof(Elemento));
-    if(novo == NULL)
+
+    if(novo == NULL)    //Verifica se a alocação de memoria para um novo elemento foi possível;
     {
-        printf("LISTA_INSERE: Nao foi possivel alocar memoria para um novo elemento!\n\n");
         return 0;
     }
     novo->info = val;
@@ -54,7 +55,7 @@ int lista_imprime(Elemento* lista)
 
     p = lista;
 
-    if(p == NULL)
+    if(p == NULL) //Verifica se há elementos na lista;
     {
         return 0;
     }
@@ -66,7 +67,7 @@ int lista_imprime(Elemento* lista)
             p = p->prox;
 
         }
-        while(p != NULL);
+        while(p != NULL); //Caso tenha elementos, enquando ainda tiver eu imprimo a var "info".
 
     }
     printf("\n");
@@ -78,9 +79,9 @@ int main()
     Elemento *topo;
     topo = lista_cria();
 
-    lista_insere(&topo, 20);
-    lista_insere(&topo, 30);
-    lista_insere(&topo, 40);
+    lista_insere(&topo, 1);
+    lista_insere(&topo, 2);
+    lista_insere(&topo, 3);
 
     lista_imprime(topo);
 
