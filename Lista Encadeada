@@ -6,8 +6,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//typedef struct elemento *Elemento;
-
 struct elemento
 {
     int info;
