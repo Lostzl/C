@@ -1,0 +1,50 @@
+/*
+ * Author Lucas V.
+ *
+ */
+
+#include<stdio.h>
+#include<stdlib.h>
+
+//typedef struct elemento *Elemento;
+
+struct elemento
+{
+    int info;
+    struct elemento* prox;
+};
+
+typedef struct elemento Elemento;
+
+Elemento* lista_cria(Elemento* lista, int val)
+{
+    Elemento* novo = (Elemento*) malloc(sizeof(Elemento));
+    novo = lista;
+    novo->info = val;
+    novo->prox = lista;
+
+    return novo;
+}
+
+void lista_imprime(Elemento* lista)
+{
+    Elemento* p;
+
+    for(p = lista; p != NULL; p = p->prox)
+    {
+        printf("%d ", p->info);
+    }
+}
+
+int main()
+{
+    struct Elemento* lista;
+
+    lista = lista_cria(lista, 10);
+    lista = lista_cria(lista, 20);
+    lista = lista_cria(lista, 30);
+
+    lista_imprime(lista);
+
+    return 0;
+}
