@@ -21,35 +21,18 @@ Elemento* lista_cria()
 };
 
 //REALIZA A INSERCAO DE ELEMENTOS NO INICIO DA LISTA.
-int lista_insere(Elemento** lista, int val)
+Elemento* lista_insere(Elemento* lista, int val)
 {
-    if(lista == NULL)
-    {
-        return 0;
-    }
-
     Elemento* novo = (Elemento*) malloc(sizeof(Elemento));
 
-    if(novo == NULL)    //Verifica se a alocação de memoria para um novo elemento foi possível;
-    {
-        return 0;
-    }
     novo->info = val;
-    if(*lista == NULL)
-    {
-        novo->prox = NULL;
-        *lista = novo;
-    }
-    else
-    {
-        novo->prox = *lista;
-        *lista = novo;
-    }
 
-    return 1;
+    novo->prox = lista;
+
+    return novo;
 }
 
-int lista_imprime(Elemento* lista)
+void lista_imprime(Elemento* lista)
 {
     Elemento* p;
 
@@ -71,7 +54,6 @@ int lista_imprime(Elemento* lista)
 
     }
     printf("\n");
-    return 1;
 }
 
 int main()
@@ -79,9 +61,9 @@ int main()
     Elemento *topo;
     topo = lista_cria();
 
-    lista_insere(&topo, 1);
-    lista_insere(&topo, 2);
-    lista_insere(&topo, 3);
+    topo = lista_insere(topo, 1);
+    topo = lista_insere(topo, 2);
+    topo = lista_insere(topo, 3);
 
     lista_imprime(topo);
 
