@@ -14,35 +14,77 @@ struct elemento
 
 typedef struct elemento Elemento;
 
-Elemento* lista_cria(Elemento* lista, int val)
-{
-    Elemento* novo = (Elemento*) malloc(sizeof(Elemento));
-    novo = lista;
-    novo->info = val;
-    novo->prox = lista;
 
-    return novo;
+Elemento* lista_cria()
+{
+    return NULL;
+};
+
+int lista_insere(Elemento** lista, int val)
+{
+    if(lista == NULL)
+    {
+        printf("LISTA_INSERE: A lista passada como parametro é nula!\n\n");
+        return 0;
+    }
+    Elemento* novo = (Elemento*) malloc(sizeof(Elemento));
+    if(novo == NULL)
+    {
+        printf("LISTA_INSERE: Nao foi possivel alocar memoria para um novo elemento!\n\n");
+        return 0;
+    }
+    novo->info = val;
+    if(*lista == NULL)
+    {
+        novo->prox = NULL;
+        *lista = novo;
+    }
+    else
+    {
+        novo->prox = *lista;
+        *lista = novo;
+    }
+
+    return 1;
 }
 
-void lista_imprime(Elemento* lista)
+int lista_imprime(Elemento* lista)
 {
     Elemento* p;
 
-    for(p = lista; p != NULL; p = p->prox)
+    p = lista;
+
+    if(p == NULL)
     {
-        printf("%d ", p->info);
+        return 0;
     }
+    else
+    {
+        do
+        {
+            printf("%d ", p->info);
+            p = p->prox;
+
+        }
+        while(p != NULL);
+
+    }
+    printf("\n");
+    return 1;
 }
 
 int main()
 {
-    struct Elemento* lista;
+    Elemento *topo;
+    topo = lista_cria();
 
-    lista = lista_cria(lista, 10);
-    lista = lista_cria(lista, 20);
-    lista = lista_cria(lista, 30);
+    lista_insere(&topo, 20);
+    lista_insere(&topo, 30);
+    lista_insere(&topo, 40);
 
-    lista_imprime(lista);
+    lista_imprime(topo);
 
+    printf("\n");
+    system("pause");
     return 0;
 }
