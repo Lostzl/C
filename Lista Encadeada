@@ -14,17 +14,19 @@ typedef struct elemento
 
 Elemento* Lista;
 
-void imprime_lista(Elemento* lista);
+int imprime_lista(Elemento* lista);
 Elemento* adiciona_elemento_inicio(Elemento* lista, int val);
+Elemento* adiciona_elemento_final(Elemento* lista, int val);
 
 int main()
 {
     Elemento* lista;
     lista = NULL;
 
-    lista = adiciona_elemento_inicio(lista, 1);
-    lista = adiciona_elemento_inicio(lista, 2);
-    lista = adiciona_elemento_inicio(lista, 3);
+    lista = adiciona_elemento_final(lista, 1);
+    lista = adiciona_elemento_final(lista, 2);
+    // lista = adiciona_elemento_final(lista, 3);
+    // lista = adiciona_elemento_final(lista, 4);
 
     imprime_lista(lista);
 
@@ -33,15 +35,15 @@ int main()
     return 0;
 }
 
-void imprime_lista(Elemento* lista)
+int imprime_lista(Elemento* lista)
 {
     Elemento* p;
     p = lista;
 
     if(p==NULL)
     {
-
-        printf("\nNAO HA ELEMENTOS NA LISTA\n");
+        printf("\nNAO HA ELEMENTOS NA LISTA\n\n");
+        return 0;
     }
     do
     {
@@ -50,7 +52,7 @@ void imprime_lista(Elemento* lista)
 
     }
     while(p != NULL);
-
+    return 1;
 }
 
 Elemento* adiciona_elemento_inicio(Elemento* lista, int val)
@@ -67,7 +69,36 @@ Elemento* adiciona_elemento_inicio(Elemento* lista, int val)
     {
         novo->val = val;
         novo->prox=lista;
+        return novo;
+    }
 
+}
+
+Elemento* adiciona_elemento_final(Elemento* lista, int val)
+{
+    Elemento* novo = (Elemento*) malloc(sizeof(Elemento));
+    Elemento* p;
+    p = lista;
+    novo->val = val;
+
+    if(lista == NULL)
+    {
+        novo->prox = NULL;
+        return novo;
+    }
+    else
+    {
+        while(p!=NULL)
+        {
+            p = p->prox;
+        }
+
+        if(p==NULL)
+        {
+            novo->prox = NULL;
+            p = novo;
+            return lista; //RETORNANDO LISTA
+        }
 
     }
 
