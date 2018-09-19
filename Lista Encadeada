@@ -22,11 +22,12 @@ int main()
 {
     Elemento* lista;
     lista = NULL;
+    Lista = lista;
 
     lista = adiciona_elemento_final(lista, 1);
     lista = adiciona_elemento_final(lista, 2);
-    // lista = adiciona_elemento_final(lista, 3);
-    // lista = adiciona_elemento_final(lista, 4);
+    lista = adiciona_elemento_final(lista, 3);
+    lista = adiciona_elemento_final(lista, 4);
 
     imprime_lista(lista);
 
@@ -90,14 +91,13 @@ Elemento* adiciona_elemento_final(Elemento* lista, int val)
     {
         while(p!=NULL)
         {
+            if(p->prox==NULL)
+            {
+                novo->prox = NULL;
+                p->prox= novo;
+                return lista;
+            }
             p = p->prox;
-        }
-
-        if(p==NULL)
-        {
-            novo->prox = NULL;
-            p = novo;
-            return lista; //RETORNANDO LISTA
         }
 
     }
