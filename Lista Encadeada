@@ -6,68 +6,69 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-struct elemento
+typedef struct elemento
 {
-    int info;
+    int val;
     struct elemento* prox;
-};
+} Elemento;
 
-typedef struct elemento Elemento;
+Elemento* Lista;
 
-
-Elemento* lista_cria()
-{
-    return NULL;
-};
-
-//REALIZA A INSERCAO DE ELEMENTOS NO INICIO DA LISTA.
-Elemento* lista_insere(Elemento* lista, int val)
-{
-    Elemento* novo = (Elemento*) malloc(sizeof(Elemento));
-
-    novo->info = val;
-
-    novo->prox = lista;
-
-    return novo;
-}
-
-void lista_imprime(Elemento* lista)
-{
-    Elemento* p;
-
-    p = lista;
-
-    if(p == NULL) //Verifica se há elementos na lista;
-    {
-        return 0;
-    }
-    else
-    {
-        do
-        {
-            printf("%d ", p->info);
-            p = p->prox;
-
-        }
-        while(p != NULL); //Caso tenha elementos, enquando ainda tiver eu imprimo a var "info".
-
-    }
-    printf("\n");
-}
+void imprime_lista(Elemento* lista);
+Elemento* adiciona_elemento_inicio(Elemento* lista, int val);
 
 int main()
 {
-    Elemento *topo;
-    topo = lista_cria();
+    Elemento* lista;
+    lista = NULL;
 
-    topo = lista_insere(topo, 1);
-    topo = lista_insere(topo, 2);
-    topo = lista_insere(topo, 3);
+    lista = adiciona_elemento_inicio(lista, 1);
+    lista = adiciona_elemento_inicio(lista, 2);
+    lista = adiciona_elemento_inicio(lista, 3);
 
-    lista_imprime(topo);
+    imprime_lista(lista);
 
-    printf("\n");
+
     system("pause");
     return 0;
+}
+
+void imprime_lista(Elemento* lista)
+{
+    Elemento* p;
+    p = lista;
+
+    if(p==NULL)
+    {
+
+        printf("\nNAO HA ELEMENTOS NA LISTA\n");
+    }
+    do
+    {
+        printf("\nVAL: %d\n\n", p->val);
+        p = p->prox;
+
+    }
+    while(p != NULL);
+
+}
+
+Elemento* adiciona_elemento_inicio(Elemento* lista, int val)
+{
+    Elemento* novo = (Elemento*) malloc(sizeof(Elemento));
+
+    if(lista == NULL)
+    {
+        novo->val = val;
+        novo->prox = NULL;
+        return novo;
+    }
+    else
+    {
+        novo->val = val;
+        novo->prox=lista;
+
+
+    }
+
 }
