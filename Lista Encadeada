@@ -12,23 +12,31 @@ typedef struct elemento
     struct elemento* prox;
 } Elemento;
 
-Elemento* Lista;
+Elemento* Lista; //PONTEIRO PARA REFERENCIAR O INICIO DA LISTA
 
 int imprime_lista(Elemento* lista);
-Elemento* adiciona_elemento_inicio(Elemento* lista, int val);
-Elemento* adiciona_elemento_final(Elemento* lista, int val);
+Elemento* adiciona_elemento_inicio(Elemento* lista, int val);//ADD ELEMENTO NO INICIO DA LISTA
+Elemento* adiciona_elemento_final(Elemento* lista, int val);//ADD ELEMENTO NO FINAL DA LISTA
+int busca(Elemento* lista, int val); //BUSCA ELEMENTO EM UMA LISTA
+Elemento* lista_remover(Elemento* lista, int val);//REMOVE ALGUM ELEMENTO DA LISTA
+void* destroi_lista(Elemento* lista);
 
 int main()
 {
     Elemento* lista;
     lista = NULL;
-    Lista = lista;
 
     lista = adiciona_elemento_final(lista, 1);
     lista = adiciona_elemento_final(lista, 2);
     lista = adiciona_elemento_final(lista, 3);
     lista = adiciona_elemento_final(lista, 4);
 
+    Lista = lista;
+
+    imprime_lista(lista);
+    printf("\n----------------\n\n");
+
+    //destroi_lista(lista);
     imprime_lista(lista);
 
 
@@ -40,6 +48,7 @@ int imprime_lista(Elemento* lista)
 {
     Elemento* p;
     p = lista;
+
 
     if(p==NULL)
     {
@@ -102,4 +111,81 @@ Elemento* adiciona_elemento_final(Elemento* lista, int val)
 
     }
 
+}
+int busca(Elemento* lista, int val)
+{
+    int cont = 0;
+    Elemento* p;
+    p = lista;
+
+    if(p == NULL)
+    {
+        printf("\nNao ha Elementos na Lista!!\n\n");
+        return 0;
+    }
+
+    while(p->prox != NULL)
+    {
+        if(p->val == val)
+        {
+            printf("\nElemento Encontrado: %d\n\n", p->val);
+            cont++;
+        }
+        p = p->prox;
+    }
+    if(cont == 0 && p->val == val)
+    {
+        printf("\nElemento Encontrado: %d\n\n", p->val);
+
+    }
+    else if(cont == 0)
+    {
+        printf("\nElemento Nao Encontrado!!\n\n");
+    }
+    return 1;
+}
+
+Elemento* lista_remover(Elemento* lista, int val)
+{
+    Elemento* a = NULL;
+    Elemento* p;
+    p = lista;
+
+    while(p != NULL && p->val != val)
+    {
+        a = p;
+        p = p->prox;
+    }
+    if(p == NULL)
+    {
+
+        return lista;
+    }
+    if(a == NULL)
+    {
+
+        lista = p->prox;
+
+    }
+    else
+    {
+        a->prox = p->prox;
+
+    }
+    free(p);
+    return lista;
+
+}
+void* destroi_lista(Elemento* lista)
+{
+    // Elemento* a = NULL;
+    Elemento* p;
+    p = lista;
+    /* while(p != NULL)
+     {
+         a = p->prox;
+         free(p);
+         p = a;
+     }*/
+    free(p);
 }
