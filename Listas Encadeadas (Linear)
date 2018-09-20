@@ -1,6 +1,6 @@
 /*
  * Author Lucas V.
- * Lista Encadeada Lineas e Algumas Operações.
+ *
  */
 
 #include<stdio.h>
@@ -28,19 +28,18 @@ int main()
     lista = NULL;
 
     lista = adiciona_elemento_ordenado(lista, 1);
-    lista = adiciona_elemento_ordenado(lista, 2);
-    lista = adiciona_elemento_ordenado(lista, 3);
-    lista = adiciona_elemento_ordenado(lista, 4);
+    //lista = adiciona_elemento_ordenado(lista, 2);
+    //lista = adiciona_elemento_ordenado(lista, 3);
+    //lista = adiciona_elemento_ordenado(lista, 4);
 
     Lista = lista;
 
-    imprime_lista(lista);
+    imprime_lista(Lista);
 
     printf("\n----------------\n\n");
 
-    lista = lista_remover(lista, 4);
+    Lista = lista_remover(lista, 1);
     imprime_lista(Lista);
-
 
     system("pause");
     return 0;
@@ -189,7 +188,6 @@ void* destroi_lista(Elemento* lista)
         free(p);
         p = a;
     }
-    free(p);
 }
 Elemento* adiciona_elemento_ordenado(Elemento* lista, int val)
 {
