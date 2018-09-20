@@ -1,6 +1,6 @@
 /*
  * Author Lucas V.
- *
+ * Lista Encadeada Lineas e Algumas Operações.
  */
 
 #include<stdio.h>
@@ -12,32 +12,34 @@ typedef struct elemento
     struct elemento* prox;
 } Elemento;
 
-Elemento* Lista; //PONTEIRO PARA REFERENCIAR O INICIO DA LISTA
+Elemento* Lista = NULL; //PONTEIRO PARA REFERENCIAR O INICIO DA LISTA
 
 int imprime_lista(Elemento* lista);
-Elemento* adiciona_elemento_inicio(Elemento* lista, int val);//ADD ELEMENTO NO INICIO DA LISTA
-Elemento* adiciona_elemento_final(Elemento* lista, int val);//ADD ELEMENTO NO FINAL DA LISTA
-int busca(Elemento* lista, int val); //BUSCA ELEMENTO EM UMA LISTA
-Elemento* lista_remover(Elemento* lista, int val);//REMOVE ALGUM ELEMENTO DA LISTA
-void* destroi_lista(Elemento* lista);
+Elemento* adiciona_elemento_inicio(Elemento* lista, int val);//ADD ELEMENTO NO INICIO DA LISTA;
+Elemento* adiciona_elemento_final(Elemento* lista, int val);//ADD ELEMENTO NO FINAL DA LISTA;
+int busca(Elemento* lista, int val); //BUSCA ELEMENTO EM UMA LISTA;
+Elemento* lista_remover(Elemento* lista, int val);//REMOVE ALGUM ELEMENTO DA LISTA;
+void* destroi_lista(Elemento* lista);//DESTROI A LISTA(NÃO TENTE IMPRIMI-LA DEPOIS :);
+Elemento* adiciona_elemento_ordenado(Elemento* lista, int val);//ADD ELEMENTO DE FORMA ORDENADA CRESCENTE;
 
 int main()
 {
     Elemento* lista;
     lista = NULL;
 
-    lista = adiciona_elemento_final(lista, 1);
-    lista = adiciona_elemento_final(lista, 2);
-    lista = adiciona_elemento_final(lista, 3);
-    lista = adiciona_elemento_final(lista, 4);
+    lista = adiciona_elemento_ordenado(lista, 1);
+    lista = adiciona_elemento_ordenado(lista, 2);
+    lista = adiciona_elemento_ordenado(lista, 3);
+    lista = adiciona_elemento_ordenado(lista, 4);
 
     Lista = lista;
 
     imprime_lista(lista);
+
     printf("\n----------------\n\n");
 
-    //destroi_lista(lista);
-    imprime_lista(lista);
+    lista = lista_remover(lista, 4);
+    imprime_lista(Lista);
 
 
     system("pause");
@@ -178,14 +180,43 @@ Elemento* lista_remover(Elemento* lista, int val)
 }
 void* destroi_lista(Elemento* lista)
 {
-    // Elemento* a = NULL;
+    Elemento* a = NULL;
     Elemento* p;
     p = lista;
-    /* while(p != NULL)
-     {
-         a = p->prox;
-         free(p);
-         p = a;
-     }*/
+    while(p != NULL)
+    {
+        a = p->prox;
+        free(p);
+        p = a;
+    }
     free(p);
+}
+Elemento* adiciona_elemento_ordenado(Elemento* lista, int val)
+{
+    Elemento* a;
+    a = NULL;
+    Elemento* p;
+    p = lista;
+    Elemento* novo = (Elemento*) malloc(sizeof(Elemento));
+    novo->val = val;
+
+    while(p != NULL && p->val < val)
+    {
+        a = p;
+        p = p->prox;
+
+    }
+    if(a == NULL)
+    {
+        novo->prox = p;
+        lista = novo;
+
+    }
+    else
+    {
+        novo->prox = a->prox;
+        a->prox = novo;
+
+    }
+    return lista;
 }
