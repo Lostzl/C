@@ -21,25 +21,28 @@ int busca(Elemento* lista, int val); //BUSCA ELEMENTO EM UMA LISTA;
 Elemento* lista_remover(Elemento* lista, int val);//REMOVE ALGUM ELEMENTO DA LISTA;
 void* destroi_lista(Elemento* lista);//DESTROI A LISTA(NÃO TENTE IMPRIMI-LA DEPOIS :);
 Elemento* adiciona_elemento_ordenado(Elemento* lista, int val);//ADD ELEMENTO DE FORMA ORDENADA CRESCENTE;
+Elemento* separa(Elemento* l, int n);//SEPARA A LISTA RESTORNANDO UMA NOVA LISTA APOS A PRIMEIRA OCORRENCIA DE n;
+Elemento* concatena(Elemento* l1, Elemento* l2);//RETORNA A CONCATENAÇÃO DE DUAS LISTAS;
+Elemento* retira_prefixo(Elemento* l, int n);//RETIRA OS n PRIMEIROS ELEMENTOS DA LISTA E RETORNA A LISTA ATUALIZADA;
 
 int main()
 {
-    Elemento* lista;
-    lista = NULL;
+    Elemento* lista = NULL;
+    Elemento* Lista = NULL;
 
     lista = adiciona_elemento_ordenado(lista, 1);
-    //lista = adiciona_elemento_ordenado(lista, 2);
-    //lista = adiciona_elemento_ordenado(lista, 3);
-    //lista = adiciona_elemento_ordenado(lista, 4);
+    lista = adiciona_elemento_ordenado(lista, 2);
+    lista = adiciona_elemento_ordenado(lista, 3);
+    lista = adiciona_elemento_ordenado(lista, 4);
 
-    Lista = lista;
-
-    imprime_lista(Lista);
+    imprime_lista(lista);
 
     printf("\n----------------\n\n");
 
-    Lista = lista_remover(lista, 1);
-    imprime_lista(Lista);
+    lista = retira_prefixo(lista, 2);
+
+    imprime_lista(lista);
+
 
     system("pause");
     return 0;
@@ -188,6 +191,7 @@ void* destroi_lista(Elemento* lista)
         free(p);
         p = a;
     }
+    free(p);
 }
 Elemento* adiciona_elemento_ordenado(Elemento* lista, int val)
 {
@@ -217,4 +221,82 @@ Elemento* adiciona_elemento_ordenado(Elemento* lista, int val)
 
     }
     return lista;
+}
+Elemento* separa(Elemento* l, int n)
+{
+
+    Elemento *p, *t;
+    p = l;
+
+    if(l == NULL)
+    {
+        return l;
+    }
+    else
+    {
+        while(p != NULL && p->val != n)
+        {
+            p = p->prox;
+        }
+        if(p != NULL)
+        {
+            t = p->prox;
+            p->prox = NULL;
+        }
+        else
+        {
+            t = NULL;
+        }
+    }
+    return t;
+}
+Elemento* concatena(Elemento* l1, Elemento* l2)
+{
+    Elemento* p;
+    p = l1;
+
+    if(l1 == NULL)
+    {
+        return l2;
+    }
+    else
+    {
+        while(p->prox != NULL)
+        {
+            p = p->prox;
+        }
+        p->prox = l2;
+    }
+    return l1;
+}
+Elemento* retira_prefixo(Elemento* l, int n)
+{
+    Elemento* p;
+    p = l;
+    int i = 0;
+
+    if(l == NULL)
+    {
+        return l;
+    }
+    else
+    {
+        for(i = 0; i < n; i++)
+        {
+            Elemento* aux;
+            aux = p;
+            if(p == NULL)
+            {
+                l = NULL;
+                return l;
+            }
+            else
+            {
+                p = p->prox;
+                free(aux);
+            }
+        }
+        l = p;
+    }
+    return l;
 }
