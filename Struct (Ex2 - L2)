@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct rest
+{
+    char nome[40];
+    char endereco[40];
+    char tipo_comida[15];
+    int nota_cozinha;
+    struct rest* prox;
+};
+typedef struct rest restaurante;
+
+restaurante* insere(restaurante* r, char nome[], char endereco[], char tipo_comida[], int nota);
+
+
+int main()
+{
+    restaurante* lista;
+
+    lista = NULL;
+
+    FILE * arq;
+
+    arq = fopen("File.txt", "wt");
+
+    lista = insere(lista, "Restaurante 1", "R 67, N 34", "Baiana", 3);
+
+    if (arq == NULL) // Se não conseguiu criar
+    {
+        printf("Problemas na CRIACAO do arquivo\n");
+        return;
+    }
+
+    fwrite(lista, sizeof(lista), 1, arq);
+
+    fclose(arq);
+
+
+    system("pause");
+    return 0;
+}
+
+restaurante* insere(restaurante* r, char nome[], char endereco[], char tipo_comida[], int nota)
+{
+    restaurante* novo = (restaurante*) malloc(sizeof(restaurante));
+    restaurante* p;
+    p = r;
+
+    sprintf(novo->nome, nome);
+    sprintf(novo->endereco, endereco);
+    sprintf(novo->tipo_comida, tipo_comida);
+    novo->nota_cozinha = nota;
+
+    if(r == NULL)
+    {
+        novo->prox = NULL;
+        return novo;
+    }
+    else
+    {
+        while(p->prox != NULL)
+        {
+            p = p->prox;
+        }
+
+        p->prox = novo;
+        novo->prox = NULL;
+    }
+    return r;
+}
