@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct produto
+{
+    char nome[30];
+    int codigo;
+    double preco;
+};
+
+typedef struct produto Produto;
+
+int main()
+{
+    Produto prod[10];
+
+    Produto* pProd = (Produto*) malloc(10 * sizeof(Produto));
+
+    pProd = prod;
+
+    sprintf(pProd->nome, "Pe de Moleque");
+    pProd->codigo = 13205;
+    pProd->preco = 0.20;
+
+    sprintf((pProd+1)->nome, "Cocada Baiana");
+    (pProd+1)->codigo = 15202;
+    (pProd+1)->preco = 0.50;
+
+    for(int i = 0; i < 2; i++)
+    {
+        printf("Produto: %s \nCodigo: %d \nPreco: %.2f \n", (pProd+i)->nome, (pProd+i)->codigo, (pProd+i)->preco);
+        printf("\n");
+    }
+
+    system("pause");
+    return 0;
+}
