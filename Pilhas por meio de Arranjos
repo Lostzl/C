@@ -1,0 +1,76 @@
+/**
+ *PILHAS POR MEIO DE ARRANJOS;
+ *
+ */
+
+#include<stdio.h>
+#include<stdlib.h>
+#define MaxTam 100
+
+typedef int Apontador;
+typedef int TipoChave;
+
+typedef struct
+{
+    TipoChave Chave;
+    /*outros componetes*/
+} TipoItem;
+
+typedef struct
+{
+    TipoItem Item[MaxTam];
+    Apontador Topo;
+} TipoPilha;
+
+void FPVazia(TipoPilha *Pilha);
+int Vazia(TipoPilha *pPilha);
+void Empilha(TipoItem x, TipoPilha *pPilha);
+void Desempilha(TipoPilha *pPilha, TipoItem *Item);
+int Tamanho(TipoPilha* pPilha);
+
+int main()
+{
+
+
+
+    system("pause");
+    return 0;
+}
+
+void FPVazia(TipoPilha *Pilha)
+{
+    Pilha->Topo = 0;
+}/*FPVazia*/
+
+int Vazia(TipoPilha *pPilha)
+{
+    return(pPilha->topo == 0);
+}
+void Empilha(TipoItem x, TipoPilha *pPilha)
+{
+    if(pPilha->Topo == MaxTam)
+    {
+        printf(" Erro Pilha esta cheia\n");
+    }
+    else
+    {
+        pPilha->Item[pPilha->Topo] = x;
+        pPilha ->Topo++;
+    }
+}/*empilha*/
+void Desempilha(TipoPilha *pPilha, TipoItem *Item)
+{
+    if(Vazia(pPilha))
+    {
+        printf(" Erro pilha esta vazia\n");
+    }
+    else
+    {
+        pPilha->topo--
+        *Item = pPilha->Item[pPilha->topo];
+    }
+}/*desempilha*/
+int Tamanho(TipoPilha* pPilha)
+{
+    return (pPilha->Topo);
+} /* Tamanho *
