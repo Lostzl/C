@@ -1,0 +1,313 @@
+/**
+ * @Author Lucas Vitor.
+ * Algoritimos de Ordenação.
+ */
+
+/** ORDENACAO **BUBBLESORT*//*: COMPARA PARES DE ELEMENTOS ADJACENTES
+* E OS TROCAM DE LUGAR SE ESTIVEREM FORA DE ORDEM,
+* SEMPRE LEVA O MAIOR ELEMENTO PARA O FINAL DO VETOR,
+* NAO RECOMENDADO PARA GRANDES CONJUNTOS DE DADOS.
+*/
+
+/** ORDENACAO **INSERTIONSORT*//*: SIMILAR A ORDENACAO DE CARTAS DE BARALHO,
+* PEGA-SE UMA CARTA DE CADA VEZ E A COLOCA EM SEU DEVIDO LUGAR,
+* "MOVE TODOS OS VALORES A SUA ESQUERDA, QUE FOREM MAIORES, PARA A SUA DIREITA,
+* NO CASO, O FINAL DO VETOR."
+* SEMPRE DEIXANDO AS CARTAS DA MAO EM ORDEM, EFICIENTE PARA CONJUNTOS
+* PEQUENOS DE DADOS, ESTAVEL: NAO ALTERA A ORDEM DOS DADOS,
+* CAPAZ DE ORDENAR OS DADOS A MEDIDA QUE OS RECEBE.
+*/
+
+/** ORDENACAO **SELECTIONSORT*//*: A CADA PASSO PROCURA-SE O MENOR VALOR
+* DO ARRAY E O COLOCA NA PRIMEIRA POSICAO DO ARRAY, REPETE-SE O
+* PROCESSO PARA TODAS AS POSICOES DO ARRAY, INDO DE 0 ATÉ TAM-1,
+* INEFICIENTE PARA GRANDES CONJUNTOS DE DADOS,
+* NAO ESTAVEL.
+*/
+
+/** ORDENACAO **MERGESORT*//*: DIVIDIR E CONQUISTAR, DIVIDE RECURSIVAMENTE O
+* CONJUNTO DE DADOS, ATE QUE CADA SUBCONJUNTO POSSUA APENAS 1 ELEMENTO,
+* COMBINA 2 SUBCONJUNTOS DE FORMA A OBTER UM CONJUNTO MAIOR E ORDENADO,
+* ESSE PROCESSO REPETE-SE ATE QUE EXISTA APENAS UM CONJUNTO,
+* ESTAVEL: NAO ALTERA A ORDEM DE DADOS IGUAIS, DESVANTAGENS: RECURSIVO E
+* USA VETOR AUXILIAR DURANTE A ORDENACAO(GASTA MAIS MEMORIA) POREM TEM
+* MAIOR EFICIENCIA, O(N LOG N) AO INVES DE O(N^2).
+*/
+
+/** ORDENACAO **QUICKSORT*//*: "TROCA DE PARTICOES" DIVIDIR E CONQUISTAR,
+* UM ELEMENTO E ESCOLHIDO COMO PIVO, "PARTICIONA": OS DADOS SAO REARANJADOS,
+* (VALORES MENORES QUE O PIVO SAO COLACADOS A SUA ESQUERDA E OS MAIORES A SUA DIREITA),
+* RECURSIVAMENTE ORDENA CADA UMA DAS DUAS PARTICOES CRIADAS,
+* TEM OTIMA PERFOMANCE O(N LOG N), MAS AINDA HA RAROS CASOS ONDE OCORRE O(N^2).
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+/* FUNCOES AUXILIARES*/
+void imprime_vetor(int *v, int TAM);
+void preenche_vetor(int *v, int TAM);
+void merge(int *v, int inicio, int meio, int fim);
+int particiona(int *v, int inicio, int fim);
+/* */
+
+
+/* FUNCOES DE ORDENACAO(tam = TAM),(inicio = 0),(fim = TAM - 1)*/
+void bubble_sort(int *v, int tam);
+void insertion_sort(int *v, int tam);
+void selection_sort(int *v, int tam);
+void merge_sort(int *v, int inicio, int fim);
+void quick_sort(int *v, int inicio, int fim);
+/* */
+
+
+int main()
+{
+    int TAM = 6; //TAMANHO DO VETOR***********
+
+
+    int v[TAM];
+    int inicio = 0;
+    int fim = TAM - 1;
+    int tam = TAM;
+
+
+    preenche_vetor(v, TAM);
+    printf("\n\n");
+    imprime_vetor(v, TAM);
+
+    /* CHAME A FUNCAO DE ORDENACAO DESEJADA:
+     */
+
+    /*->>*/ quick_sort(v, inicio, fim);
+
+    printf("\nORDENADO:\n\n");
+    imprime_vetor(v, TAM);
+
+    system("pause");
+    return 0;
+}
+
+
+/* ORDENACAO **BUBBLESORT**: COMPARA PARES DE ELEMENTOS ADJACENTES
+ * E OS TROCAM DE LUGAR SE ESTIVEREM FORA DE ORDEM,
+ * SEMPRE LEVA O MAIOR ELEMENTO PARA O FINAL DO VETOR,
+ * NAO RECOMENDADO PARA GRANDES CONJUNTOS DE DADOS.
+ */
+
+void bubble_sort(int *v, int tam)
+{
+    int continua, aux;
+    do
+    {
+        continua = 0;
+        for(int i = 0; i < tam - 1; i++)
+        {
+            if(v[i] > v[i+1])
+            {
+                aux = v[i];
+                v[i] = v[i+1];
+                v[i+1] = aux;
+                continua = i;
+            }
+        }
+        tam--;
+    }
+    while(continua != 0);
+}
+
+/* ORDENACAO **INSERTIONSORT**: SIMILAR A ORDENACAO DE CARTAS DE BARALHO,
+ * PEGA-SE UMA CARTA DE CADA VEZ E A COLOCA EM SEU DEVIDO LUGAR,
+ * "MOVE TODOS OS VALORES A SUA ESQUERDA, QUE FOREM MAIORES, PARA A SUA DIREITA
+ * NO CASO, O FINAL DO VETOR."
+ * SEMPRE DEIXANDO AS CARTAS DA MAO EM ORDEM, EFICIENTE PARA CONJUNTOS
+ * PEQUENOS DE DADOS, ESTAVEL: NAO ALTERA A ORDEM DOS DADOS,
+ * CAPAZ DE ORDENAR OS DADOS A MEDIDA QUE OS RECEBE.
+ */
+
+void insertion_sort(int *v, int tam)
+{
+    int aux;
+    for(int i = 1; i < tam; i++)
+    {
+        aux = v[i];
+        for(int j = i; (j > 0) && (aux < v[j - 1]); j--)
+        {
+            v[j] =v[j-1];
+            v[j-1]=aux;
+        }
+    }
+}
+
+/* ORDENACAO **SELECTIONSORT**: A CADA PASSO PROCURA-SE O MENOR VALOR
+ * DO ARRAY E O COLOCA NA PRIMEIRA POSICAO DO ARRAY, REPETE-SE O
+ * PROCESSO PARA TODAS AS POSICOES DO ARRAY, INDO DE 0 ATÉ TAM-1,
+ * INEFICIENTE PARA GRANDES CONJUNTOS DE DADOS,
+ * NAO ESTAVEL.
+ */
+
+void selection_sort(int *v, int tam)
+{
+    int aux, menor;
+    for(int i = 0; i < tam - 1; i++)
+    {
+        menor = i;
+        for(int j = i+1; j < tam; j++)
+        {
+            if(v[j] < v[menor])
+            {
+                menor = j;
+            }
+        }
+        if(i != menor)
+        {
+            aux = v[i];
+            v[i] = v[menor];
+            v[menor] = aux;
+        }
+    }
+}
+
+/* PARTE DA ORDENACAO MERGESORT.
+ * COMBINA 2 SUBCONJUNTOS DE FORMA A OBTER UM CONJUNTO MAIOR E ORDENADO.
+ */
+
+void merge(int *v, int inicio, int meio, int fim)
+{
+    int p1, p2, tamanho, fim1 = 0, fim2 = 0, j, k;
+    tamanho = fim-inicio+1;
+    p1 = inicio;
+    p2 = meio+1;
+    int *temp = (int *) malloc(tamanho*sizeof(int));
+    if(temp != NULL)
+    {
+        for(int i = 0; i<tamanho; i++)
+        {
+            if(!fim1 && !fim2)
+            {
+                if(v[p1] < v[p2])
+                {
+                    temp[i] = v[p1++];
+                }
+                else
+                {
+                    temp[i] = v[p2++];
+                }
+                if(p1>meio)
+                {
+                    fim1 = 1;
+                }
+                if(p2>fim)
+                {
+                    fim2 = 1;
+                }
+            }
+            else
+            {
+                if(!fim1)
+                {
+                    temp[i] = v[p1++];
+                }
+                else
+                {
+                    temp[i] = v[p2++];
+                }
+            }
+        }
+        for(j = 0, k = inicio; j<tamanho; j++, k++)
+        {
+            v[k] = temp[j];
+        }
+    }
+    free(temp);
+}
+
+/* ORDENACAO **MERGESORT**: DIVIDIR E CONQUISTAR, DIVIDE RECURSIVAMENTE O
+ * CONJUNTO DE DADOS, ATE QUE CADA SUBCONJUNTO POSSUA APENAS 1 ELEMENTO,
+ * COMBINA 2 SUBCONJUNTOS DE FORMA A OBTER UM CONJUNTO MAIOR E ORDENADO,
+ * ESSE PROCESSO REPETE-SE ATE QUE EXISTA APENAS UM CONJUNTO,
+ * ESTAVEL: NAO ALTERA A ORDEM DE DADOS IGUAIS, DESVANTAGENS: RECURSIVO E
+ * USA VETOR AUXILIAR DURANTE A ORDENACAO(GASTA MAIS MEMORIA) POREM TEM
+ * MAIOR EFICIENCIA, O(N LOG N) AO INVES DE O(N^2).
+ */
+
+void merge_sort(int *v, int inicio, int fim)
+{
+    int meio;
+    if(inicio < fim)
+    {
+        meio = ((inicio+fim)/2);
+        merge_sort(v, inicio, meio);
+        merge_sort(v, meio+1, fim);
+        merge(v, inicio, meio, fim);
+    }
+}
+
+/* PARTE DA ORDENACAO QUICKSORT.
+ * PARTICIONA: OS DADOS SAO REARANJADOS,
+ * (VALORES MENORES QUE O PIVO SAO COLACADOS A SUA ESQUERDA E OS MAIORES A SUA DIREITA).
+ */
+
+int particiona(int *v, int inicio, int fim)
+{
+    int esq = inicio, dir = fim, pivo, aux;
+    pivo = v[inicio];
+    while(esq < dir)
+    {
+        while(v[esq] <= pivo)
+        {
+            esq++;
+        }
+        while(v[dir] > pivo)
+        {
+            dir--;
+        }
+        if(esq < dir)
+        {
+            aux = v[esq];
+            v[esq] = v[dir];
+            v[dir] = aux;
+        }
+    }
+    v[inicio] = v[dir];
+    v[dir] = pivo;
+    return dir;
+}
+
+/* ORDENACAO **QUICKSORT**: "TROCA DE PARTICOES" DIVIDIR E CONQUISTAR,
+ * UM ELEMENTO E ESCOLHIDO COMO PIVO, "PARTICIONA": OS DADOS SAO REARANJADOS,
+ * (VALORES MENORES QUE O PIVO SAO COLACADOS A SUA ESQUERDA E OS MAIORES A SUA DIREITA),
+ * RECURSIVAMENTE ORDENA CADA UMA DAS DUAS PARTICOES CRIADAS,
+ * TEM OTIMA PERFOMANCE O(N LOG N), MAS AINDA HA RAROS CASOS ONDE O(N^2).
+ */
+
+void quick_sort(int *v, int inicio, int fim)
+{
+    int pivo;
+    if(fim > inicio)
+    {
+        pivo = particiona(v, inicio, fim);
+        quick_sort(v, inicio, pivo-1);
+        quick_sort(v, pivo+1, fim);
+    }
+}
+
+void imprime_vetor(int *v, int tam)
+{
+    for(int i = 0; i < tam; i++)
+    {
+        printf("%d ", v[i]);
+    }
+    printf("\n\n");
+}
+
+void preenche_vetor(int *v, int tam)
+{
+    printf("-PREENCHENDO O VETOR DE TAMANHO %d-\n", tam);
+
+    for(int i = 0; i < tam; i++)
+    {
+        printf("\nV[%d] = ", i);
+        scanf("%d", &v[i]);
+    }
+}
