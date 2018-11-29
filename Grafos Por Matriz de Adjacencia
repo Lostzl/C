@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+
+    int n_vertices, i=0, j=0, op;
+
+    printf("representação de grafos por matrizes!\n\n");
+
+    printf("entre com o numero de vertices:");
+    scanf("%d", &n_vertices);
+
+    int m_adjacencia[n_vertices][n_vertices];
+
+for(i = 0; i < n_vertices; i++){
+    for(j = 0; j < n_vertices; j++){
+        printf("o vertice (%d), tem aresta com (%d), caso sim(1), caso nao(0):", i+1, j+1);
+        scanf("%d", &op);
+        m_adjacencia[i][j] = op;
+    }
+}
+printf("\n\n");
+
+for(i = 0; i < n_vertices; i++){
+    for(j = 0; j < n_vertices; j++){
+        printf("%d ",  m_adjacencia[i][j]);
+    }
+    printf("\n");
+}
+
+
+printf("\n\n");
+
+        system("pause");
+    return 0;
+}
